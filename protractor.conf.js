@@ -42,6 +42,7 @@ exports.config = {
         'require-module':   [
             'ts-node/register'
         ],
+        retry: 2,
         tags:    ['~@wip'],
         strict:  false,
     },
@@ -72,6 +73,7 @@ exports.config = {
                 '--log-level=3',
                 '--disable-gpu',
                 '--window-size=1920,1080',
+                '--remote-debugging-port=9222',
             ].concat(isCI ? ['--headless'] : [])    // run in headless mode on the CI server
         }
     }

@@ -31,7 +31,13 @@ When('he/she/they multiply/multiplies {int} and {int}', (leftSideOperand: number
         ConfirmCalculation(),
     ));
 
-Then('he/she/they should see that the result is {}', (expectedResult: string) =>
-    actorInTheSpotlight().attemptsTo(
+let willPass = false;
+Then('he/she/they should see that the result is {}', (expectedResult: string) => {
+    if (!willPass) {
+        expectedResult = 'Flakey flakey flake flake';
+        willPass = true;
+    }
+    return actorInTheSpotlight().attemptsTo(
         Ensure.that(CalculationResult(), equals(expectedResult)),
-    ));
+    );
+});
